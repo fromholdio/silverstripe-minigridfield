@@ -1,0 +1,34 @@
+{
+	"name": "fromholdio/silverstripe-minigridfield",
+	"type": "silverstripe-vendormodule",
+	"description": "",
+	"license": "BSD-3-Clause",
+	"keywords": ["silverstripe", "gridfield"],
+	"homepage": "https://github.com/fromholdio/silverstripe-minigridfield",
+	"support": {
+		"issues": "https://github.com/fromholdio/silverstripe-minigridfield/issues"
+	},
+	"authors": [{
+		"name": "Luke Fromhold",
+		"homepage": "https://fromhold.io"
+	}],
+	"require": {
+		"php": ">=5.6",
+		"silverstripe/vendor-plugin": "^1.0",
+		"silverstripe/framework": "^4.2",
+        "fromholdio/silverstripe-gridfield-limiter": "^1.0.0",
+        "symbiote/silverstripe-gridfieldextensions": "^3.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"Fromholdio\\MiniGridField\\": "src/"
+		}
+	},
+    "extra": {
+        "expose": [
+            "client"
+        ]
+    },
+	"prefer-stable": true,
+	"minimum-stability": "dev"
+}
