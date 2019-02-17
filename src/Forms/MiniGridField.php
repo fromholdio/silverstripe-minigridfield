@@ -197,6 +197,8 @@ class MiniGridField extends FormField
                 return false;
             }
         }
+
+        return true;
     }
 
     public function getAvailableClasses()
@@ -284,12 +286,25 @@ class MiniGridField extends FormField
 
     public function getDeleteActionRemoveRelation()
     {
-        return (bool) $this->deleteActionRemoveRelation;
+        $removeRelation = $this->deleteActionRemoveRelation;
+        if (is_bool($removeRelation)) {
+            return $removeRelation;
+        }
+
+        if ($this->isVersioned()) {
+            return true;
+        }
+        return false;
     }
 
-    public function setDeleteActionRemoveRelation($value)
+    public function setDeleteActionRemoveRelation($removeRelation)
     {
-        $this->deleteActionRemoveRelation = (bool) $value;
+        if (is_bool($removeRelation)) {
+            $this->deleteActionRemoveRelation = $removeRelation;
+        }
+        else {
+            $this->deleteActionRemoveRelation = null;
+        }
         return $this;
     }
 
