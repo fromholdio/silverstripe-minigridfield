@@ -37,3 +37,8 @@
 .minigridfield.minigridfield--one .grid-field__icon-action.edit-link {
     opacity: 1;
 }
+
+.minigridfield .btn-toolbar {
+    margin-top: 0;
+    margin-bottom: 0;
+}

@@ -18,7 +18,6 @@ class HasOneMiniGridField extends MiniGridField
     public function getGridField()
     {
         $field = parent::getGridField();
-        $field->removeExtraClass('minigridfield');
         $field->addExtraClass('hasone-minigridfield');
         return $field;
     }
