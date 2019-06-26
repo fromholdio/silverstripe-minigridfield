@@ -161,7 +161,7 @@ class MiniGridField extends FormField
     {
         $parent = $this->parent;
         $relation = $parent->{$this->name}();
-        return $relation->first()->hasExtension(Versioned::class);
+        return ($relation && $relation->exists() && $relation->first()->hasExtension(Versioned::class));
     }
 
     public function isLimited()
