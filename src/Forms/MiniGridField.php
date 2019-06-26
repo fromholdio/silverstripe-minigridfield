@@ -92,6 +92,9 @@ class MiniGridField extends FormField
         $field->setForm($this->Form);
 
         $field->addExtraClass('minigridfield');
+        if ($list->count() < 1) {
+            $field->addExtraClass('minigridfield--empty');
+        }
 
         $this->extend('updateGridField', $field);
         return $field;

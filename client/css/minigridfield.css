@@ -42,3 +42,11 @@
     margin-top: 0;
     margin-bottom: 0;
 }
+
+.minigridfield.minigridfield--empty .grid-field__table {
+    display: none;
+}
+
+.minigridfield.minigridfield--empty .ss-gridfield-add-new-multi-class {
+    margin-bottom: 0 !important;
+}
