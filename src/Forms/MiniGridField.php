@@ -29,8 +29,9 @@ class MiniGridField extends FormField
     protected $sortField;
     protected $multiAdderDisabled;
     protected $deleteActionRemoveRelation;
+    protected $relationName;
 
-    public function __construct($name, $title, $parent, $sortField = null, $limit = null, $showLimitMessage = null)
+    public function __construct($name, $title, $parent, $sortField = null, $limit = null, $showLimitMessage = null, $relationName = null)
     {
         parent::__construct($name, $title, null);
         $this->name = $name;
@@ -39,6 +40,7 @@ class MiniGridField extends FormField
         $this->setSortField($sortField);
         $this->setLimit($limit);
         $this->setShowLimitMessage($showLimitMessage);
+        $this->setRelationName($relationName);
         $this->setForm($parent->Form);
     }
 
@@ -56,15 +58,28 @@ class MiniGridField extends FormField
         return $field;
     }
 
+    public function setRelationName($name)
+    {
+        $this->relationName = $name;
+        return $this;
+    }
+
+    public function getRelationName()
+    {
+        $name = $this->name;
+        $this->extend('updateRelationName', $name);
+        return $name;
+    }
+
     public function getPreSaveField()
     {
         $parent = $this->parent;
         $parentSingular = $parent->i18n_singular_name();
-        $relationClass = $parent->getRelationClass($this->name);
+        $relationClass = $parent->getRelationClass($this->getRelationName());
         $relationSingular = strtolower($relationClass::singleton()->i18n_singular_name());
 
         $field = LiteralField::create(
-            $this->name . 'Save',
+            $this->getName() . 'Save',
             _t(
                 __CLASS__ . '.PLEASESAVEPARENTTOADDOBJECTS',
                 'Please save {parent} first to add a {relation}',
@@ -82,7 +97,7 @@ class MiniGridField extends FormField
     public function getGridField()
     {
         $field = GridField::create(
-            $this->name,
+            $this->getName(),
             $this->title,
             $list = $this->getGridList()
         );
@@ -103,7 +118,7 @@ class MiniGridField extends FormField
     public function getGridList()
     {
         $parent = $this->parent;
-        $list = $parent->{$this->name}();
+        $list = $parent->{$this->getRelationName()}();
         $this->extend('updateGridList', $list);
         return $list;
     }
@@ -163,7 +178,7 @@ class MiniGridField extends FormField
     public function isVersioned()
     {
         $parent = $this->parent;
-        $relation = $parent->{$this->name}();
+        $relation = $parent->{$this->getRelationName()}();
         return ($relation && $relation->exists() && $relation->first()->hasExtension(Versioned::class));
     }
 
@@ -207,7 +222,7 @@ class MiniGridField extends FormField
     public function getAvailableClasses()
     {
         $parent = $this->parent;
-        $relationClass = $parent->getRelationClass($this->name);
+        $relationClass = $parent->getRelationClass($this->getRelationName());
         $classes = array_values(ClassInfo::subclassesFor($relationClass));
         sort($classes);
         $availableClasses = [];

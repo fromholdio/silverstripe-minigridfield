@@ -9,10 +9,10 @@ class HasOneMiniGridField extends MiniGridField
 {
     protected $record;
 
-    public function __construct($name, $title, $parent, $showLimitMessage = null)
+    public function __construct($name, $title, $parent, $showLimitMessage = null, $relationName = null)
     {
-        parent::__construct($name, $title, $parent, null, 1, $showLimitMessage);
-        $this->setRecord($parent->{$name}());
+        parent::__construct($name, $title, $parent, null, 1, $showLimitMessage, $relationName);
+        $this->setRecord($parent->{$this->getRelationName()}());
     }
 
     public function getGridField()
@@ -25,7 +25,7 @@ class HasOneMiniGridField extends MiniGridField
     public function getGridList()
     {
         $parent = $this->parent;
-        $list = HasOneRelationList::create($parent, $this->record, $this->name);
+        $list = HasOneRelationList::create($parent, $this->record, $this->getRelationName());
         $list = $list->filter('ID', $this->record->ID);
         $this->extend('updateGridList', $list);
         return $list;
@@ -34,7 +34,7 @@ class HasOneMiniGridField extends MiniGridField
     public function isVersioned()
     {
         $parent = $this->parent;
-        $relation = $parent->{$this->name}();
+        $relation = $parent->{$this->getRelationName()}();
         return $relation->hasExtension(Versioned::class);
     }
 
