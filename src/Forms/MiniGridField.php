@@ -251,10 +251,10 @@ class MiniGridField extends FormField
 
     public function setAllowedClasses($classes)
     {
+        $this->allowedClasses = null;
         if (is_array($classes) && count($classes) > 0) {
             $this->allowedClasses = $classes;
         }
-        $this->allowedClasses = null;
         return $this;
     }
 
