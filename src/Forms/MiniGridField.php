@@ -30,6 +30,7 @@ class MiniGridField extends FormField
     protected $multiAdderDisabled;
     protected $deleteActionRemoveRelation;
     protected $relationName;
+    protected $gridConfig;
 
     public function __construct($name, $title, $parent, $sortField = null, $limit = null, $showLimitMessage = null, $relationName = null)
     {
@@ -101,7 +102,8 @@ class MiniGridField extends FormField
             $this->title,
             $list = $this->getGridList()
         );
-        $config = $this->getGridConfig();
+        $config = $this->gridConfig;
+        if (!$config) $config = $this->getGridConfig();
         $field->setConfig($config);
         $field->setList($list);
         $field->setForm($this->Form);
@@ -121,6 +123,12 @@ class MiniGridField extends FormField
         $list = $parent->{$this->getRelationName()}();
         $this->extend('updateGridList', $list);
         return $list;
+    }
+
+    public function setGridConfig($config)
+    {
+        $this->gridConfig = $config;
+        return $this;
     }
 
     public function getGridConfig()
