@@ -3,6 +3,7 @@
 namespace Fromholdio\MiniGridField\Forms;
 
 use Fromholdio\MiniGridField\ORM\HasOneRelationList;
+use SilverStripe\Forms\GridField\GridFieldDetailForm;
 use SilverStripe\Versioned\Versioned;
 
 class HasOneMiniGridField extends MiniGridField
@@ -20,6 +21,15 @@ class HasOneMiniGridField extends MiniGridField
         $field = parent::getGridField();
         $field->addExtraClass('hasone-minigridfield');
         return $field;
+    }
+
+    public function getGridConfig()
+    {
+        $config = parent::getGridConfig();
+        $detailForm = $config->getComponentByType(GridFieldDetailForm::class);
+        $detailForm->setShowPagination(false);
+        $detailForm->setShowAdd(false);
+        return $config;
     }
 
     public function getGridList()
