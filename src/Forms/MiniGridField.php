@@ -247,6 +247,7 @@ class MiniGridField extends FormField
             $availableClasses[$class] = $title;
         }
         if (count($availableClasses) > 0) {
+			asort($availableClasses);
             return $availableClasses;
         }
         return null;
