@@ -67,7 +67,10 @@ class MiniGridField extends FormField
 
     public function getRelationName()
     {
-        $name = $this->name;
+        $name = $this->relationName;
+        if (empty($name)) {
+            $name = $this->name;
+        }
         $this->extend('updateRelationName', $name);
         return $name;
     }
@@ -247,7 +250,7 @@ class MiniGridField extends FormField
             $availableClasses[$class] = $title;
         }
         if (count($availableClasses) > 0) {
-			asort($availableClasses);
+            asort($availableClasses);
             return $availableClasses;
         }
         return null;
