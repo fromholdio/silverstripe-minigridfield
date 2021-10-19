@@ -19,10 +19,6 @@ Auto-magically handles (preconfigures, with a few flags available to devs) order
 
 `composer require fromholdio/silverstripe-minigridfield`
 
-## Detail
-
-Detail and usage examples to come.
-
 ## Screenshots
 
 ![Empty](docs/en/_images/00-empty.png)
@@ -88,6 +84,16 @@ This is an example showing a has one, has many and many many:
         private static $db = ['Title' => 'Varchar'];
         private static $belongs_many_many = ['Radios' => Radio::class];
     }
+
+## Replacing GridField universally
+
+For projects that you'd like to replace all GridFields with MiniGridField, you can use the [Injector](https://docs.silverstripe.org/en/4/developer_guides/extending/injector/#injector) to do so in a few lines of config:
+
+```yaml
+SilverStripe\Core\Injector\Injector:
+  SilverStripe\Forms\GridField\GridField:
+    class: Fromholdio\MiniGridField\Forms\MiniGridField
+```
 
 
 ## Thanks & Acknowledgements
