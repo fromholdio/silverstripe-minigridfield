@@ -34,6 +34,61 @@ Detail and usage examples to come.
 ![HasOneMiniGrid](docs/en/_images/03-hasoneminigrid.png)
 
 
+## Complete Example
+
+This is an example showing a has one, has many and many many:
+
+    use Fromholdio\MiniGridField\Forms\HasOneMiniGridField;
+    use Fromholdio\MiniGridField\Forms\MiniGridField;
+    use SilverStripe\Admin\ModelAdmin;
+    use SilverStripe\ORM\DataObject;
+
+    class TestAdmin extends ModelAdmin {
+        private static $menu_title = 'Test';
+        private static $url_segment = 'test';
+        private static $managed_models = [
+            Radio::class,
+            Owner::class,
+            Presenter::class,
+            Listener::class,
+        ];
+    }
+
+    class Radio extends DataObject {
+        private static $db = ['Title' => 'Varchar'];
+        private static $has_one = ['Owner' => Owner::class];
+        private static $has_many = ['Presenters' => Presenter::class];
+        private static $many_many = ['Listeners' => Listener::class];
+        public function getCMSFields() {
+            $fields = parent::getCMSFields();
+
+            $fields->replaceField('OwnerID', HasOneMiniGridField ::create('Owner', 'Owner', $this));
+
+            $fields->removeByName('Presenters');
+            $fields->insertAfter('Title', MiniGridField::create('Presenters', 'Presenters', $this));
+
+            $fields->removeByName('Listeners');
+            $fields->insertAfter('Title', MiniGridField::create('Listeners', 'Listeners', $this));
+
+            return $fields;
+        }
+    }
+
+    class Owner extends DataObject {
+        private static $db = ['Title' => 'Varchar'];
+        private static $has_many = ['Radio' => Radio::class];
+    }
+
+    class Presenter extends DataObject {
+        private static $db = ['Title' => 'Varchar'];
+        private static $has_one = ['Radio' => Radio::class];
+    }
+
+    class Listener extends DataObject {
+        private static $db = ['Title' => 'Varchar'];
+        private static $belongs_many_many = ['Radios' => Radio::class];
+    }
+
 
 ## Thanks & Acknowledgements
 
