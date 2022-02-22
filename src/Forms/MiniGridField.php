@@ -6,6 +6,7 @@ use Fromholdio\GridFieldLimiter\Forms\GridFieldLimiter;
 use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Core\ClassInfo;
 use SilverStripe\Core\Injector\Injector;
+use SilverStripe\Core\Manifest\ModuleLoader;
 use SilverStripe\Forms\FormField;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridFieldAddNewButton;
@@ -20,6 +21,7 @@ use SilverStripe\Versioned\VersionedGridFieldState\VersionedGridFieldState;
 use SilverStripe\View\Requirements;
 use Symbiote\GridFieldExtensions\GridFieldAddNewMultiClass;
 use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
+use SGN\HasOneEdit\HasOneEdit;
 
 class MiniGridField extends FormField
 {
@@ -71,6 +73,16 @@ class MiniGridField extends FormField
         if (empty($name)) {
             $name = $this->name;
         }
+
+        $hasOneEditModuleExists = ModuleLoader::inst()->getManifest()
+            ->moduleExists('stevie-mayhew/hasoneedit');
+        if ($hasOneEditModuleExists)
+        {
+            if (HasOneEdit::isHasOneEditField($name)) {
+                list($parentRelationName, $name) = HasOneEdit::getRelationNameAndField($name);
+            }
+        }
+
         $this->extend('updateRelationName', $name);
         return $name;
     }
