@@ -1,0 +1,9 @@
+---
+Name: fromholdio-minigridfield-hasoneedit
+Only:
+  moduleexists: stevie-mayhew/hasoneedit
+---
+
+Fromholdio\MiniGridField\Forms\MiniGridField:
+  extensions:
+    fioHasOneEditMiniGridField: Fromholdio\MiniGridField\Extensions\HasOneEditMiniGridFieldExtension
