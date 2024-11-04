@@ -14,7 +14,7 @@
 	}],
 	"require": {
         "silverstripe/vendor-plugin": "~1.0 || ~2.0",
-        "silverstripe/cms": "~4.2 || ~5.0",
+        "silverstripe/framework": "~4.2 || ~5.0",
         "fromholdio/silverstripe-gridfield-limiter": "^1.0.0 || ^2.0.0",
         "stevie-mayhew/hasoneedit": "^2.3.0",
         "symbiote/silverstripe-gridfieldextensions": "^3.0.0 || ^4.0.0"
