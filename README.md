@@ -11,9 +11,10 @@ Auto-magically handles (preconfigures, with a few flags available to devs) order
 
 ## Requirements
 
-* [silverstripe-framework](https://github.com/silverstripe/silverstripe-framework) ^4.2
-* [symbiote/silverstripe-gridfieldextensions](https://github.com/symbiote/silverstripe-gridfieldextensions) ^3.0
-* [fromholdio/silverstripe-gridfield-limiter](https://github.com/fromholdio/silverstripe-gridfield-limiter) ^1.0
+* [silverstripe-framework](https://github.com/silverstripe/silverstripe-framework) ^6.x
+* [symbiote/silverstripe-gridfieldextensions](https://github.com/symbiote/silverstripe-gridfieldextensions) ^5.x
+* [fromholdio/silverstripe-gridfield-limiter](https://github.com/fromholdio/silverstripe-gridfield-limiter) ^3.x
+* [fromholdio/silverstripe-hasoneedit](https://github.com/fromholdio/silverstripe-hasoneedit) ^3.x
 
 ## Installation
 
