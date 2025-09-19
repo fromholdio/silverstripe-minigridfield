@@ -3,6 +3,7 @@
 namespace Fromholdio\MiniGridField\Forms;
 
 use Fromholdio\GridFieldLimiter\Forms\GridFieldLimiter;
+use Fromholdio\HasOneEdit\HasOneEdit;
 use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Core\ClassInfo;
 use SilverStripe\Core\Injector\Injector;
@@ -17,11 +18,10 @@ use SilverStripe\Forms\GridField\GridFieldDetailForm;
 use SilverStripe\Forms\GridField\GridFieldEditButton;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\Versioned\Versioned;
-use SilverStripe\Versioned\VersionedGridFieldState\VersionedGridFieldState;
+//use SilverStripe\Versioned\VersionedGridFieldState\VersionedGridFieldState;
 use SilverStripe\View\Requirements;
 use Symbiote\GridFieldExtensions\GridFieldAddNewMultiClass;
 use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
-use SGN\HasOneEdit\HasOneEdit;
 
 class MiniGridField extends FormField
 {
@@ -156,11 +156,11 @@ class MiniGridField extends FormField
                 $this->getDeleteActionRemoveRelation()
             ));
 
-        if ($this->isVersioned()) {
-            $config->addComponent(
-                new VersionedGridFieldState()
-            );
-        }
+//        if ($this->isVersioned()) {
+//            $config->addComponent(
+//                new VersionedGridFieldState()
+//            );
+//        }
 
         if ($this->isLimited()) {
             $config->addComponent(

@@ -41,7 +41,7 @@ class HasOneRelationList extends DataList
         parent::__construct($record->ClassName);
     }
 
-    public function add($item)
+    public function add(mixed $item): void
     {
         $this->parent->setField("{$this->name}ID", $item->ID);
         $this->parent->write();

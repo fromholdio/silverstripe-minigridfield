@@ -2,7 +2,7 @@
 
 namespace Fromholdio\MiniGridField\Extensions;
 
-use SGN\HasOneEdit\HasOneEdit;
+use Fromholdio\HasOneEdit\HasOneEdit;
 use SilverStripe\Core\Extension;
 
 class HasOneEditMiniGridFieldExtension extends Extension

@@ -13,11 +13,10 @@
 		"homepage": "https://fromhold.io"
 	}],
 	"require": {
-        "silverstripe/vendor-plugin": "~1.0 || ~2.0",
-        "silverstripe/framework": "~4.2 || ~5.0",
-        "fromholdio/silverstripe-gridfield-limiter": "^1.0.0 || ^2.0.0",
-        "stevie-mayhew/hasoneedit": "^2.3.0",
-        "symbiote/silverstripe-gridfieldextensions": "^3.0.0 || ^4.0.0"
+        "silverstripe/framework": "^6.0",
+        "fromholdio/silverstripe-gridfield-limiter": "^3.0.0",
+        "fromholdio/silverstripe-hasoneedit": "^3.0.1",
+        "symbiote/silverstripe-gridfieldextensions": "^5.0.3"
 	},
 	"autoload": {
 		"psr-4": {
