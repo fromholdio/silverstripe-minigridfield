@@ -21,6 +21,10 @@
     overflow: hidden;
 }
 
+.minigridfield .table tbody td:first-child {
+    overflow-wrap: anywhere;
+}
+
 .minigridfield .table tbody tr:first-child td {
     border-top: 0;
 }
